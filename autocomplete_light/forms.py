@@ -329,10 +329,7 @@ class ModelFormMetaclass(DjangoModelFormMetaclass):
             if isinstance(field, GenericForeignKey):
                 add_exclude += [field.ct_field, field.fk_field]
 
-        if exclude:
-            # safe concatenation of list/tuple
-            # thanks lvh from #python@freenode
-            meta.exclude = set(add_exclude) | set(exclude)
+        meta.exclude = set(add_exclude) | set(exclude)
 
     @classmethod
     def post_new(cls, new_class, meta):
