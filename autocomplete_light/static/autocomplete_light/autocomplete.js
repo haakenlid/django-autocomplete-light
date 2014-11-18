@@ -450,7 +450,7 @@ yourlabs.Autocomplete.prototype.move = function(e) {
     }
 
     // If not KEY_UP or KEY_DOWN, then return.
-    if (e.keyCode == 38) var way = 'up';
+    if (e.keyCode == 38 && !e.shiftKey) var way = 'up';
     else if (e.keyCode == 40) var way = 'down';
     else return;
 
@@ -506,7 +506,7 @@ yourlabs.Autocomplete.prototype.fixPosition = function() {
 
     this.input.parents().filter(function() {
         return $(this).css('overflow') === 'hidden';
-    }).first().css('overflow', 'visible');
+    }).first().css('overflow', 'visible').addClass('autocomplete-light-clearfix');
 	
     this.box.insertAfter(this.input).css(
             {top: pos.top + pos.height, left: pos.left});
